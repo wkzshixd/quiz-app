@@ -1,0 +1,6 @@
+.container {
+    position: relative;
+    width: 411px;
+    height: 870px;
+    background-color: var(--secondary-color)
+}

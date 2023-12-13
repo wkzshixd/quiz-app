@@ -1,0 +1,39 @@
+.container {
+    position: relative;
+    z-index: 5;
+    background-color: #FFF;
+    box-shadow: 0px 2px 13px 4px rgba(157, 87, 227, 0.25);
+    border-radius: 14px;
+    width: 316px;
+    height: 138px;
+}
+
+.logo {
+    position: absolute;
+    top: 26px;
+    bottom: 22px;
+    left: 48px;
+    width: 90px;
+    height: 90px;
+    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.text {
+    position: absolute;
+    width: 173px;
+    top: 45px;
+    right: 11px;
+    color: var(--text-color);
+    text-align: center;
+    font-size: 35px;
+    font-weight: 500;
+    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
