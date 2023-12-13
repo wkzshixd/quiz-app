@@ -1,35 +1,22 @@
 import styles from './Menu.module.css'
 import { MenuButton } from '../menu-button/MenuButton'
-
-
-const data = [
-    {
-        id: '1',
-        name: 'C++',
-        logo: './img/c++_logo.png',
-        questions: {},
-    },
-    {
-        id: '2',
-        name: 'Java',
-        logo: './img/java_logo.png',
-        questions: {},
-    },
-    {
-        id:'3',
-        name: 'Python',
-        logo: './img/python_logo.png',
-        questions: {},
-    }
-]
-
+import rawData from "../../../public/data.json";
+import { useEffect, useState } from 'react';
+type JSONData = typeof rawData;
 
 export const Menu = () => {
-  return (
+    const [data, setData] = useState<JSONData | undefined>(undefined);
+
+    useEffect (() => {
+        fetch('./data.json')
+        .then(response => response.json())
+        .then(json => setData(json))
+    }, [])
+
+
+  return (  
     <div className={styles.container}>
-        {data.map((lang) => {
-            return <MenuButton key={lang.id} id={lang.id} text={lang.name} logo={lang.logo}/>
-        })}
+        {data?.map((item) => {return <MenuButton key={item.id} text={item.lang} logo={item.logo}/>})}
     </div>
   )
 }

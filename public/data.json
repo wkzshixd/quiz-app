@@ -1,0 +1,176 @@
+[
+    {
+        "id": "1",
+        "lang": "C++",
+        "logo": "./img/c++_logo.png",
+        "questions": [
+            {
+                "question": "What is a reference variable in C++?",
+                "answers": [
+                    {
+                        "answer": "A variable that acts as an alias to another object or value.",
+                        "isCorrect": true
+                    },
+                    {
+                        "answer": "A variable used to store memory addresses.",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "A variable that cannot be modified after initialization.",
+                        "isCorrect": false
+                    }
+                ]
+            },
+            {
+                "question": "What is the use of 'new' in C++?",
+                "answers": [
+                    {
+                        "answer": "Allocates memory for a single object and returns a pointer to it.",
+                        "isCorrect": true
+                    },
+                    {
+                        "answer": "Deallocates memory for an object.",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "Creates a reference to an existing object.",
+                        "isCorrect": false
+                    }
+                ]
+            },
+            {
+                "question": "What is a virtual function in C++?",
+                "answers": [
+                    {
+                        "answer": "A function that can be overridden in derived classes.",
+                        "isCorrect": true
+                    },
+                    {
+                        "answer": "A function that cannot be overridden.",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "A function that is declared in the base class.",
+                        "isCorrect": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "lang": "Java",
+        "logo": "./img/java_logo.png",
+        "questions": [
+            {
+                "question": "What is the main difference between '==' and '.equals()' in Java?",
+                "answers": [
+                    {
+                        "answer": "'==' compares object references, while '.equals()' compares object content.",
+                        "isCorrect": true
+                    },
+                    {
+                        "answer": "'==' compares primitive data types, while '.equals()' compares objects.",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "'==' is used for inheritance checks, '.equals()' for value comparisons.",
+                        "isCorrect": false
+                    }
+                ]
+            },
+            {
+                "question": "What is the purpose of 'static' keyword in Java?",
+                "answers": [
+                    {
+                        "answer": "To create class-level variables or methods that can be accessed without creating an instance of the class.",
+                        "isCorrect": true
+                    },
+                    {
+                        "answer": "To declare variables that cannot be changed.",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "To define variables that are accessible only within the same package.",
+                        "isCorrect": false
+                    }
+                ]
+            },
+            {
+                "question": "What are the access modifiers in Java?",
+                "answers": [
+                    {
+                        "answer": "Public, Protected, Default (Package-private), Private.",
+                        "isCorrect": true
+                    },
+                    {
+                        "answer": "Static, Final, Abstract, Public.",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "Static, Final, Protected, Private.",
+                        "isCorrect": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "lang": "Python",
+        "logo": "./img/python_logo.png",
+        "questions": [
+            {
+                "question": "What is the difference between list and tuple in Python?",
+                "answers": [
+                    {
+                        "answer": "Lists are mutable (can be changed), tuples are immutable (cannot be changed).",
+                        "isCorrect": true
+                    },
+                    {
+                        "answer": "Lists can contain different data types, tuples can contain only one data type.",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "Lists are indexed by strings, tuples are indexed by integers.",
+                        "isCorrect": false
+                    }
+                ]
+            },
+            {
+                "question": "What is the purpose of 'lambda' functions in Python?",
+                "answers": [
+                    {
+                        "answer": "To create anonymous functions.",
+                        "isCorrect": true
+                    },
+                    {
+                        "answer": "To convert strings to lowercase.",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "To declare multi-line functions.",
+                        "isCorrect": false
+                    }
+                ]
+            },
+            {
+                "question": "What does the 'self' keyword refer to in Python?",
+                "answers": [
+                    {
+                        "answer": "The instance of the class.",
+                        "isCorrect": true
+                    },
+                    {
+                        "answer": "A reserved keyword for defining variables.",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "A way to create class inheritance.",
+                        "isCorrect": false
+                    }
+                ]
+            }
+        ]
+    }
+]
