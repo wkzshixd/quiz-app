@@ -18,6 +18,10 @@
                     {
                         "answer": "A variable that cannot be modified after initialization.",
                         "isCorrect": false
+                    },
+                    {
+                        "answer": "An automatic variable in C++.",
+                        "isCorrect": false
                     }
                 ]
             },
@@ -35,6 +39,10 @@
                     {
                         "answer": "Creates a reference to an existing object.",
                         "isCorrect": false
+                    },
+                    {
+                        "answer": "Reserves space for multiple objects in memory.",
+                        "isCorrect": false
                     }
                 ]
             },
@@ -51,6 +59,10 @@
                     },
                     {
                         "answer": "A function that is declared in the base class.",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "A static function in C++.",
                         "isCorrect": false
                     }
                 ]
@@ -76,6 +88,10 @@
                     {
                         "answer": "'==' is used for inheritance checks, '.equals()' for value comparisons.",
                         "isCorrect": false
+                    },        
+                    {
+                        "answer": "'==' checks for null values, '.equals()' checks for non-null values.",
+                        "isCorrect": false
                     }
                 ]
             },
@@ -93,6 +109,10 @@
                     {
                         "answer": "To define variables that are accessible only within the same package.",
                         "isCorrect": false
+                    },
+                    {
+                        "answer": "To create instances of a class.",
+                        "isCorrect": false
                     }
                 ]
             },
@@ -109,6 +129,10 @@
                     },
                     {
                         "answer": "Static, Final, Protected, Private.",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "Public, Private, Internal, Protected.",
                         "isCorrect": false
                     }
                 ]
@@ -134,6 +158,10 @@
                     {
                         "answer": "Lists are indexed by strings, tuples are indexed by integers.",
                         "isCorrect": false
+                    },
+                    {
+                        "answer": "Lists have a fixed size, tuples can dynamically resize.",
+                        "isCorrect": false
                     }
                 ]
             },
@@ -151,6 +179,10 @@
                     {
                         "answer": "To declare multi-line functions.",
                         "isCorrect": false
+                    },
+                    {
+                        "answer": "To perform arithmetic operations.",
+                        "isCorrect": false
                     }
                 ]
             },
@@ -167,6 +199,10 @@
                     },
                     {
                         "answer": "A way to create class inheritance.",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "A reference to the parent class.",
                         "isCorrect": false
                     }
                 ]

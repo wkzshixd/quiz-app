@@ -6,20 +6,23 @@ import { useSelector } from 'react-redux';
 
 type JSONData = typeof rawData;
 
-export const Menu = () => {
+export const Menu = (props) => { // FIXME:
     const [data, setData] = useState<JSONData | undefined>(undefined);
+    useEffect(() => {
+      if (props.json && props.json !== data) {
+        setData(props.json);
+      }
+    }, [props.json, data]);
+  
+    
     let visibility = 'visible';
     const appState = useSelector((state) => state.app.value) // FIXME:
     appState == 'menu' ? visibility = 'visible' : visibility = 'hidden';
 
-    useEffect (() => {
-        fetch('./data.json')
-        .then(response => response.json())
-        .then(json => setData(json))
-    }, [])
+
 
   return (  
-    <div className={styles.container + " " + visibility}>
+    <div className={`${styles.container} ${visibility}`}>
         {data?.map((item) => {return <MenuButton key={item.id} text={item.lang} logo={item.logo}/>})}
     </div>
   )
