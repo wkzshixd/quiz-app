@@ -13,11 +13,11 @@
                     },
                     {
                         "answer": "A variable used to store memory addresses.",
-                        "isCorrect": false
+                        "isCorrect": true
                     },
                     {
                         "answer": "A variable that cannot be modified after initialization.",
-                        "isCorrect": false
+                        "isCorrect": true
                     },
                     {
                         "answer": "An automatic variable in C++.",

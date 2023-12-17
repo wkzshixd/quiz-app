@@ -1,15 +1,27 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import styles from './Question.module.css'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { update } from '../scoreSlice';
+import { Option } from '../option/Option'
+import { JSONData } from '../menu/Menu';
 
-export const Question = (props) => { // FIXME:
-    let visibility = 'hidden';
-    let questions;
+let visibility = 'hidden';
+let questions: Questions
+
+type Questions = {
+    question: string;
+    answers: {
+        answer: string,
+        isCorrect: boolean
+    }[]
+}[];
+
+export const Question = (props : JSONData) => { // FIXME:
+
+    const dispatch = useDispatch();
     const appState = useSelector((state) => state.app.value) // FIXME:
-    
     const [clickStates, setClickStates] = useState(Array(4).fill(''));
     const [answerStates, setAnswerStates] = useState(Array(4).fill('')); // Создаем массив из 4 состояний для каждой кнопки
-    const [answerState, setAnswerState] = useState(''); // Состояние для каждого ответа
     const [confirmation, setConfirmation] = useState(false); // Флаг подтверждения ответа
 
     if (appState != 'menu' && appState != 'final'){
@@ -25,7 +37,7 @@ export const Question = (props) => { // FIXME:
         }
     })
 
-    const handleAnswer = (index: number, isCorrect : boolean) => {
+    const handleAnswer = (index: number) => {
         if (confirmation) return;
         if (clickStates[index] === 'clicked') {
             const newStates = [...clickStates];
@@ -36,23 +48,29 @@ export const Question = (props) => { // FIXME:
             newStates[index] = 'clicked';
             setClickStates(newStates);
         }
-        
-        console.log(setClickStates)
-        setAnswerState(isCorrect ? 'correct' : 'incorrect');
-        console.log(answerState)
     };
 
+    function whichAreCorrect () {
+        const correctAnswers = []
+        questions[0].answers.map(answer => {
+            answer.isCorrect ? correctAnswers.push('correct') : correctAnswers.push('');
+        })
+        return correctAnswers;
+    }
+
       const handleConfirmation = () => {
-        setConfirmation(true); // Устанавливаем флаг подтверждения
-    
-        // Здесь можно провести проверку ответа и установить состояние ответа (красный или зеленый)
-        // Например, с помощью какой-то логики, проверяющей правильность ответа
-        // В данном примере установим случайный ответ как правильный или неправильный для демонстрации
-        const randomIsCorrect = Math.random() < 0.5; // Генерируем случайное значение true/false
-        setAnswerState(randomIsCorrect ? 'correct' : 'incorrect');
+        let score = 0;
+        console.log(clickStates)
+        console.log(whichAreCorrect())
+        const correctAnswers = whichAreCorrect();
+        for (let i = 0; i < clickStates.length; i++){
+            if (clickStates[i] === 'clicked') {
+                correctAnswers[i] === 'correct' ? score += 1 : null;  
+            }
+        }
+        dispatch(update(score))
       };
 
-    console.log(questions)
     return (questions && (    
         <div className={`${styles.container} ${visibility}`}>
             <div className={styles.question}>
@@ -60,33 +78,9 @@ export const Question = (props) => { // FIXME:
                 <div className={styles.body}>{questions[0].question}</div>
             </div>
             <div className={styles.answers__wrapper}>
-                <div 
-                    className={`${styles.answer} ${answerStates[0] === 'correct' ? styles.correct : answerStates[0] === 'incorrect' ? styles.incorrect : clickStates[0] === 'clicked' ? styles.clicked : ''}`}
-                    onClick={() => handleAnswer(0, questions[0].answers[0].isCorrect)}
-                >
-                    A {questions[0].answers[0].answer}
-                </div>
- 
-                <div
-                    className={`${styles.answer} ${answerStates[1] === 'correct' ? styles.correct : answerStates[1] === 'incorrect' ? styles.incorrect : clickStates[1] === 'clicked' ? styles.clicked : ''}`}
-                    onClick={() => handleAnswer(1, questions[0].answers[1].isCorrect)}
-                >
-                    B {questions[0].answers[1].answer}
-                </div>
-
-                <div 
-                    className={`${styles.answer} ${answerStates[2] === 'correct' ? styles.correct : answerStates[2] === 'incorrect' ? styles.incorrect : clickStates[2] === 'clicked' ? styles.clicked : ''}`}
-                    onClick={() => handleAnswer(2, questions[0].answers[2].isCorrect)}
-                >
-                    C {questions[0].answers[2].answer}
-                </div>
-
-                <div 
-                    className={`${styles.answer} ${answerStates[3] === 'correct' ? styles.correct : answerStates[3] === 'incorrect' ? styles.incorrect : clickStates[3] === 'clicked' ? styles.clicked : ''}`}
-                    onClick={() => handleAnswer(3, questions[0].answers[3].isCorrect)}
-                >
-                    D {questions[0].answers[3].answer}
-                </div>
+                {questions[0].answers.map((answer, index) => {
+                    return <Option key={index} styleState={clickStates[index]} optionData={answer} index={index} handleAnswer={handleAnswer}/>
+                })}
             </div>
             <div className={styles.button} onClick={handleConfirmation} >Next</div>
         </div>

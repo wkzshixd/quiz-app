@@ -4,7 +4,7 @@ import rawData from "../../../public/data.json";
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-type JSONData = typeof rawData;
+export type JSONData = typeof rawData;
 
 export const Menu = (props) => { // FIXME:
     const [data, setData] = useState<JSONData | undefined>(undefined);

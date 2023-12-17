@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import appReducer from './appSlice'
+import scoreReducer from './scoreSlice'
 
 const store = configureStore({
   reducer: {
-    app: appReducer
+    app: appReducer,
+    score: scoreReducer
   }
 })
 
