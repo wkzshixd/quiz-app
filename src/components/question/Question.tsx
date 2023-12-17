@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import styles from './Question.module.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { update } from '../scoreSlice';
 import { Option } from '../option/Option'
 import { JSONData } from '../menu/Menu';
+import { updateScore } from '../slices/scoreSlice';
+import { updateOption } from '../slices/optionSlice';
+import { updateConfirm } from '../slices/confirmSlice';
 
 let visibility = 'hidden';
 let questions: Questions
@@ -19,10 +21,10 @@ type Questions = {
 export const Question = (props : JSONData) => { // FIXME:
 
     const dispatch = useDispatch();
-    const appState = useSelector((state) => state.app.value) // FIXME:
-    const [clickStates, setClickStates] = useState(Array(4).fill(''));
-    const [answerStates, setAnswerStates] = useState(Array(4).fill('')); // Создаем массив из 4 состояний для каждой кнопки
-    const [confirmation, setConfirmation] = useState(false); // Флаг подтверждения ответа
+    const appState = useSelector(state => state.app.value) // FIXME:
+    const optionsState = useSelector(state => state.option.value) // FIXME:
+    const confirmState = useSelector(state => state.confirm.value) // FIXME:
+
 
     if (appState != 'menu' && appState != 'final'){
         visibility = 'visible'
@@ -33,22 +35,8 @@ export const Question = (props : JSONData) => { // FIXME:
     props.json.map(topic => { //FIXME:
         if (topic.lang == appState) {
             questions = topic.questions
-            console.log(questions)
         }
     })
-
-    const handleAnswer = (index: number) => {
-        if (confirmation) return;
-        if (clickStates[index] === 'clicked') {
-            const newStates = [...clickStates];
-            newStates[index] = '';
-            setClickStates(newStates);
-        } else {
-            const newStates = [...clickStates];
-            newStates[index] = 'clicked';
-            setClickStates(newStates);
-        }
-    };
 
     function whichAreCorrect () {
         const correctAnswers = []
@@ -58,18 +46,30 @@ export const Question = (props : JSONData) => { // FIXME:
         return correctAnswers;
     }
 
-      const handleConfirmation = () => {
+    const handleConfirmation = () => {
+        if (confirmState) return;
         let score = 0;
-        console.log(clickStates)
-        console.log(whichAreCorrect())
+        const setStyle = ['', '', '', ''];
         const correctAnswers = whichAreCorrect();
-        for (let i = 0; i < clickStates.length; i++){
-            if (clickStates[i] === 'clicked') {
-                correctAnswers[i] === 'correct' ? score += 1 : null;  
+        for (let i = 0; i < optionsState.length; i++){
+            if (optionsState[i] === 'clicked') {
+                if (correctAnswers[i] === 'correct'){
+                    score += 1
+                    setStyle[i] = 'correct'
+                }  else {
+                    setStyle[i] = 'incorrect'
+                }
+            } else {
+                if (correctAnswers[i] === 'correct'){
+                    setStyle[i] = 'incorrect'
+                }  
             }
         }
-        dispatch(update(score))
-      };
+
+        dispatch(updateOption(setStyle))
+        dispatch(updateConfirm(true))
+        dispatch(updateScore(score))
+    };
 
     return (questions && (    
         <div className={`${styles.container} ${visibility}`}>
@@ -79,7 +79,7 @@ export const Question = (props : JSONData) => { // FIXME:
             </div>
             <div className={styles.answers__wrapper}>
                 {questions[0].answers.map((answer, index) => {
-                    return <Option key={index} styleState={clickStates[index]} optionData={answer} index={index} handleAnswer={handleAnswer}/>
+                    return <Option key={index} optionData={answer} index={index} />
                 })}
             </div>
             <div className={styles.button} onClick={handleConfirmation} >Next</div>

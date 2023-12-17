@@ -1,11 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
-import appReducer from './appSlice'
-import scoreReducer from './scoreSlice'
+import appReducer from './slices/appSlice'
+import scoreReducer from './slices/scoreSlice'
+import optionReducer from './slices/optionSlice'
+import confrimReducer from './slices/confirmSlice'
 
 const store = configureStore({
   reducer: {
     app: appReducer,
-    score: scoreReducer
+    score: scoreReducer,
+    option: optionReducer,
+    confirm: confrimReducer
   }
 })
 

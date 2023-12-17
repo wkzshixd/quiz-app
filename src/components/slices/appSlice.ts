@@ -1,10 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { RootState } from './store'
 
 export interface AppState {
   value: string
 }
-
 
 const initialState : AppState = {
   value: 'menu'
@@ -27,7 +25,5 @@ const appSlice = createSlice({
 })
 
 export const { menu, question, next } = appSlice.actions
-
-export const selectApp = (state: RootState) => state.app.value
 
 export default appSlice.reducer
