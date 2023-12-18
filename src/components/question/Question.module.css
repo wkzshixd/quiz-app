@@ -71,3 +71,11 @@
     transition: 0.3s;
     box-shadow: 0px 2px 13px 4px rgba(162, 89, 235, 0.7);
 }
+
+.visible {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}

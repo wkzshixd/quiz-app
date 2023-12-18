@@ -8,3 +8,11 @@
     height: 466px;
     width: fit-content;
 }
+
+.visible {
+    display: flex;
+}
+
+.hidden {
+    display: none;
+}

@@ -1,4 +1,4 @@
-export interface IData {
+export type IData = {
     id: string;
     lang: string;
     logo: string;

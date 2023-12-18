@@ -2,7 +2,7 @@ import { useState } from 'react'
 import styles from './Question.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { Option } from '../option/Option'
-import { JSONData } from '../menu/Menu';
+import { IData } from '../../data.d'
 import { updateScore } from '../slices/scoreSlice';
 import { updateOption } from '../slices/optionSlice';
 import { updateConfirm } from '../slices/confirmSlice';
@@ -10,7 +10,7 @@ import { final } from '../slices/appSlice';
 import { RootState } from '../store';
 
 
-let visibility = 'hidden';
+let visibility = styles.hidden;
 let questions: Questions
 
 type Questions = {
@@ -22,7 +22,7 @@ type Questions = {
 }[];
 
 interface QuestionProps {
-    json: JSONData;
+    json: IData;
 }
 
 export const Question: React.FC<QuestionProps> = ({json}) => {
@@ -35,9 +35,9 @@ export const Question: React.FC<QuestionProps> = ({json}) => {
     const [currentQuestion, setCurrentQuestion] = useState(0)
 
     if (appState != 'menu' && appState != 'final'){
-        visibility = 'visible'
+        visibility = styles.visible
     } else {
-        visibility = 'hidden'
+        visibility = styles.hidden
     }
 
     json.map(topic => {

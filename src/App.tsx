@@ -3,10 +3,11 @@ import styles from './App.module.css'
 import { Background } from './components/background/Background'
 import { Menu } from './components/menu/Menu'
 import { Question } from './components/question/Question'
+import { IData } from './data'
 
 
 function App() {
-  const [json, setJson] = useState({})
+  const [json, setJson] = useState<IData | object>({})
   useEffect (() => {
     fetch('./data.json')
     .then(response => response.json())

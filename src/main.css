@@ -31,12 +31,3 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.hidden {
-  display: none;
-}
-
-.full {
-  display: block;
-  height: 100%;
-  border-radius: 0;
-}
