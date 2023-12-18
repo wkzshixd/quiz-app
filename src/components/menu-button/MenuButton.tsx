@@ -1,7 +1,6 @@
 import styles from '../menu-button/MenuButton.module.css'
 import { useDispatch } from 'react-redux';
-import { menu, question, next } from '../slices/appSlice'
-import { Question } from '../question/Question';
+import { question} from '../slices/appSlice'
 
 interface MenuButtonProps {
   text: string;

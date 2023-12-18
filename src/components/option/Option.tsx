@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from './Option.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateOption } from '../slices/optionSlice';
+import { RootState } from '../store';
 
 type OptionProps = {
     optionData: {
@@ -16,8 +17,8 @@ type OptionProps = {
 export const Option = ({optionData, index} : OptionProps) => {
     const [style, setStyle] = useState('')
     const dispatch = useDispatch()
-    const optionsState = useSelector(state => state.option.value) // FIXME:
-    const confirmState = useSelector(state => state.confirm.value) // FIXME:
+    const optionsState = useSelector((state: RootState) => state.option.value)
+    const confirmState = useSelector((state: RootState) => state.confirm.value)
 
     useEffect(() => {
         if (confirmState) {
@@ -26,7 +27,7 @@ export const Option = ({optionData, index} : OptionProps) => {
                 setStyle('')
             }, 3000)
         }
-    },[confirmState, optionsState])
+    },[confirmState, optionsState, index])
 
     function handleClick () {
         if (confirmState) return

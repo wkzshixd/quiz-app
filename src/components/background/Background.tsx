@@ -1,10 +1,11 @@
 import { useSelector } from 'react-redux'
 import styles from './Background.module.css'
 import { useEffect, useState } from 'react'
+import { RootState } from '../store'
 
 export const Background = () => {
 
-  const appState = useSelector(state => state.app.value) // FIXME:
+  const appState = useSelector((state: RootState) => state.app.value)
   const [apperance, setApperance] = useState('default')
   const [display, setDisplay] = useState(styles.collapsed)
   const [visibility, setVisibility] = useState(styles.hidden)
@@ -39,8 +40,8 @@ export const Background = () => {
     }
   }, [appState])
 
-  const correctAnswers = useSelector(state => state.score.value.correct) // FIXME:;
-  const incorrectAnswers = useSelector(state => state.score.value.incorrect) // FIXME:;
+  const correctAnswers = useSelector((state: RootState) => state.score.value.correct)
+  const incorrectAnswers = useSelector((state: RootState) => state.score.value.incorrect)
 
   return (
       <div className={`${styles.container} ${display}`}>

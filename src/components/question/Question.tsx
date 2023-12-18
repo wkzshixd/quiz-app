@@ -7,6 +7,7 @@ import { updateScore } from '../slices/scoreSlice';
 import { updateOption } from '../slices/optionSlice';
 import { updateConfirm } from '../slices/confirmSlice';
 import { final } from '../slices/appSlice';
+import { RootState } from '../store';
 
 
 let visibility = 'hidden';
@@ -20,12 +21,16 @@ type Questions = {
     }[]
 }[];
 
-export const Question = (props : JSONData) => { // FIXME:
+interface QuestionProps {
+    json: JSONData;
+}
+
+export const Question: React.FC<QuestionProps> = ({json}) => {
 
     const dispatch = useDispatch();
-    const appState = useSelector(state => state.app.value) // FIXME:
-    const optionsState = useSelector(state => state.option.value) // FIXME:
-    const confirmState = useSelector(state => state.confirm.value) // FIXME:
+    const appState = useSelector((state: RootState) => state.app.value)
+    const optionsState = useSelector((state: RootState) => state.option.value)
+    const confirmState = useSelector((state: RootState) => state.confirm.value)
     const [isDisabled, setIsDisabled] = useState(false)
     const [currentQuestion, setCurrentQuestion] = useState(0)
 
@@ -35,15 +40,15 @@ export const Question = (props : JSONData) => { // FIXME:
         visibility = 'hidden'
     }
 
-    props.json.map(topic => { //FIXME:
+    json.map(topic => {
         if (topic.lang == appState) {
             questions = topic.questions
         }
     })
 
     function whichAreCorrect () {
-        const correctAnswers = []
-        questions[0].answers.map(answer => {
+        const correctAnswers : string[] = [];
+        questions[currentQuestion].answers.map(answer => {
             answer.isCorrect ? correctAnswers.push('correct') : correctAnswers.push('');
         })
         return correctAnswers;

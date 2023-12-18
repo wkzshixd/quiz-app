@@ -3,20 +3,24 @@ import { MenuButton } from '../menu-button/MenuButton'
 import rawData from "../../../public/data.json";
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
 export type JSONData = typeof rawData;
 
-export const Menu = (props) => { // FIXME:
+interface MenuProps {
+  json: JSONData;
+}
+export const Menu: React.FC<MenuProps> = ({json}) => {
     const [data, setData] = useState<JSONData | undefined>(undefined);
     useEffect(() => {
-      if (props.json && props.json !== data) {
-        setData(props.json);
+      if (json && json !== data) {
+        setData(json);
       }
-    }, [props.json, data]);
+    }, [json, data]);
   
     
     let visibility = 'visible';
-    const appState = useSelector((state) => state.app.value) // FIXME:
+    const appState = useSelector((state: RootState) => state.app.value)
     appState == 'menu' ? visibility = 'visible' : visibility = 'hidden';
 
 
