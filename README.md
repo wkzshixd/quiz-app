@@ -10,7 +10,7 @@ Question data is in the `data.json` file in `./public` folder.
 
 `.json` type structure:
 
-```json
+```
   {
       id: "string"
       lang: "string"
