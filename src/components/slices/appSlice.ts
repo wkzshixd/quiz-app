@@ -18,12 +18,12 @@ const appSlice = createSlice({
     question: (state, action: PayloadAction<string>) => {
       state.value = action.payload;
     },
-    next: state => {
-      state.value = 'next'
+    final: state => {
+      state.value = 'final'
     }
   }
 })
 
-export const { menu, question, next } = appSlice.actions
+export const { menu, question, final } = appSlice.actions
 
 export default appSlice.reducer

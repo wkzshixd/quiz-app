@@ -50,4 +50,9 @@
     font-size: 25px;
     user-select: none;
     cursor: pointer;
+    border: none;
+}
+.button:disabled {
+    background-color: #6c14c4;
+    cursor: not-allowed;
 }

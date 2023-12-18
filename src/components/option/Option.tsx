@@ -22,8 +22,11 @@ export const Option = ({optionData, index} : OptionProps) => {
     useEffect(() => {
         if (confirmState) {
             setStyle(optionsState[index])
+            setTimeout(() => {
+                setStyle('')
+            }, 3000)
         }
-    },[confirmState, optionsState, index])
+    },[confirmState, optionsState])
 
     function handleClick () {
         if (confirmState) return
@@ -38,7 +41,6 @@ export const Option = ({optionData, index} : OptionProps) => {
             newState.splice(index, 1, 'clicked')
             dispatch(updateOption(newState))
         }
-        console.log('xd')
     }
 
     const currentStyle = style === 'correct' ? styles.correct : style === 'incorrect' ? styles.incorrect : style === 'clicked' ? styles.clicked : ''

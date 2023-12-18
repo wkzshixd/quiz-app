@@ -6,6 +6,8 @@ import { JSONData } from '../menu/Menu';
 import { updateScore } from '../slices/scoreSlice';
 import { updateOption } from '../slices/optionSlice';
 import { updateConfirm } from '../slices/confirmSlice';
+import { final } from '../slices/appSlice';
+
 
 let visibility = 'hidden';
 let questions: Questions
@@ -24,7 +26,8 @@ export const Question = (props : JSONData) => { // FIXME:
     const appState = useSelector(state => state.app.value) // FIXME:
     const optionsState = useSelector(state => state.option.value) // FIXME:
     const confirmState = useSelector(state => state.confirm.value) // FIXME:
-
+    const [isDisabled, setIsDisabled] = useState(false)
+    const [currentQuestion, setCurrentQuestion] = useState(0)
 
     if (appState != 'menu' && appState != 'final'){
         visibility = 'visible'
@@ -48,41 +51,56 @@ export const Question = (props : JSONData) => { // FIXME:
 
     const handleConfirmation = () => {
         if (confirmState) return;
-        let score = 0;
+        let correct = 0;
+        let incorrect = 0;
         const setStyle = ['', '', '', ''];
         const correctAnswers = whichAreCorrect();
         for (let i = 0; i < optionsState.length; i++){
             if (optionsState[i] === 'clicked') {
                 if (correctAnswers[i] === 'correct'){
-                    score += 1
+                    correct += 1
                     setStyle[i] = 'correct'
                 }  else {
+                    incorrect += 1;
                     setStyle[i] = 'incorrect'
                 }
             } else {
                 if (correctAnswers[i] === 'correct'){
+                    incorrect += 1;
                     setStyle[i] = 'incorrect'
                 }  
             }
         }
 
+        setIsDisabled(true)
         dispatch(updateOption(setStyle))
         dispatch(updateConfirm(true))
-        dispatch(updateScore(score))
+        dispatch(updateScore({correct, incorrect}))
+
+        setTimeout(() => {
+            setIsDisabled(false)
+            dispatch(updateOption(['', '', '', '']))
+            dispatch(updateConfirm(false))
+            if (questions.length - 1 != currentQuestion){
+                setCurrentQuestion(currentQuestion =>  currentQuestion += 1)
+            } else {
+                dispatch(final())
+            }
+        }, 3000)
     };
 
     return (questions && (    
         <div className={`${styles.container} ${visibility}`}>
             <div className={styles.question}>
                 <div className={styles.title}>Question</div>
-                <div className={styles.body}>{questions[0].question}</div>
+                <div className={styles.body}>{questions[currentQuestion].question}</div>
             </div>
             <div className={styles.answers__wrapper}>
-                {questions[0].answers.map((answer, index) => {
+                {questions[currentQuestion].answers.map((answer, index) => {
                     return <Option key={index} optionData={answer} index={index} />
                 })}
             </div>
-            <div className={styles.button} onClick={handleConfirmation} >Next</div>
+            <button className={styles.button} disabled={isDisabled} onClick={handleConfirmation} >Next</button>
         </div>
         )
     )
