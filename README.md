@@ -12,17 +12,17 @@ Question data is in the `data.json` file in `./public` folder.
 
 ```json
   {
-    id: string;
-    lang: string;
-    logo: string;
-    questions: {
-        question: string;
-        answers: {
-            answer: string;
-            isCorrect: boolean;
-        }[];
-    }[];
-  }[]
+      id: "string"
+      lang: "string"
+      logo: "string"
+      questions: {
+          question: "string"
+          answers: {
+              answer: "string"
+              isCorrect: true | false
+          } []
+      } []
+  } []
 ```
 
 ## Commit book
