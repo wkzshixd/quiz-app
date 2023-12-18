@@ -10,7 +10,7 @@ interface MenuProps {
   json: IData;
 }
 export const Menu: React.FC<MenuProps> = ({json}) => {
-    const [data, setData] = useState<IData | undefined>(undefined);
+    const [data, setData] = useState<IData>();
     useEffect(() => {
       if (json && json !== data) {
         setData(json);

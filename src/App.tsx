@@ -7,7 +7,7 @@ import { IData } from './data'
 
 
 function App() {
-  const [json, setJson] = useState<IData | object>({})
+  const [json, setJson] = useState<IData>()
   useEffect (() => {
     fetch('./data.json')
     .then(response => response.json())
@@ -17,8 +17,8 @@ function App() {
     <>
     <div className={styles.container}>
       <Background/>
-      {Object.keys(json).length > 0 && <Menu json={json} />}
-      {Object.keys(json).length > 0 && <Question json={json} />}
+      {json && Object.keys(json).length > 0 && <Menu json={json} />}
+      {json && Object.keys(json).length > 0 && <Question json={json} />}
     </div>
     </> 
   )
