@@ -1,9 +1,10 @@
 .answer {
+    width: 296px;
     display: flex;
+    padding: 10px;
     flex-direction: column;
     justify-content: center;
-    padding-left: 17px;
-    height: 55px;
+    height: 35px;
     border-radius: 14px;
     background: #FFF;
     box-shadow: 0px 2px 13px 4px rgba(157, 87, 227, 0.25);
@@ -11,20 +12,30 @@
     font-size: 15px;
     user-select: none;
     cursor: pointer;
+    margin-bottom: 25px;
 }
 
 .correct {
-    box-shadow: 0px 2px 13px 4px blue;
+    border: #14FF00 solid 4px;
+    margin-bottom: 21px;
+    margin-top: -4px;
+    margin-left: -4px;
 }
 
 .incorrect {
-    box-shadow: 0px 2px 13px 4px red;
+    border: #FF7979 solid 4px;
+    margin-bottom: 21px;
+    margin-top: -4px;
+    margin-left: -4px;
 }
 
 .clicked {
-    box-shadow: 0px 2px 13px 4px #000;
+    border: rgba(157, 87, 227, 0.5) solid 4px;
+    margin-bottom: 21px;
+    margin-top: -4px;
+    margin-left: -4px;
 }
 
 .default {
-    box-shadow: 0px 2px 13px 4px gray;
+    box-shadow: 0px 2px 13px 4px rgba(157, 87, 227, 0.25);
 }

@@ -5,23 +5,50 @@
     width: 411px;
     height: 445px;
     border-radius: 0 0 18px 18px;
+    overflow: hidden;
+    user-select: none;
 }
 
-.quiz_logo {
+.full {
+    height: 100%;
+    border-radius: 0;
+}
+
+.visible {
+    display: block !important;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.logo {
     z-index: 3;
     position: absolute;
     top: 128px;
     left: 135px;
     width: 90px;
     height: 90px;    
+    transition: 0.7s;
 }
+
+.logo_changed {
+    z-index: 3;
+    position: absolute;
+    width: 90px;
+    height: 90px;   
+    top: 96px;
+    left: 49px;
+    transition: 0.7s;
+}
+
 
 .completed{
     display: none;
     position: absolute;
     z-index: 5;
     width: 300px;
-    height: 300px !important;     /* FIXME: */
+    height: 300px;
     bottom: 0px;
     left: 55px;
 }
@@ -29,22 +56,50 @@
 .score{
     display: none;
     position: absolute;
-    top: 500px;
-    left: 120px;
-    width: fit-content;
-    height: fit-content !important; /* FIXME: */
+    top: 280px;
+    left: 80px;
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+    width: 270px;
+    height: fit-content;
+    user-select:text;
 }
 
 .ellipse__52px {
     position: absolute;
     top: 28px;
     left: 285px;
+    transition: 0.7s;
+}
+
+.ellipse__52px_changed {
+    position: absolute;
+    top: 64px;
+    left: 246px;
+    transition: 0.7s;
+}
+
+.ellipse__110px{
+    position: absolute;
+    top: 364px;
+    right: 0px;
+    transition: 0.7s;
 }
 
 .ellipse__129px {
     position: absolute;
     top: 0px;
     left: 135px;
+    transition: 0.7s;
+}
+
+.ellipse__129px_right{
+    position: absolute;
+    top: 292px;
+    left: 0px;
+    transition: 0.7s;
 }
 
 .ellipse__152white {
@@ -52,24 +107,57 @@
     position: absolute;
     top: 101px;
     left: 104px;
+    transition: 0.7s;
+}
+
+.ellipse__152white_changed{
+    z-index: 2;
+    position: absolute;
+    top: 69px;
+    left: 18px;
+    transition: 0.7s;
 }
 
 .ellipse__153px {
     position: absolute;
     top: 0px;
     left: 0px;
+    transition: 0.7s;
+}
+
+.ellipse__153px_changed {
+    position: absolute;
+    top: 0px;
+    left: -100px;
+    transition: 0.7s;
 }
 
 .ellipse__204px {
     position: absolute;
     top: 75px;
     left: 78px;
+    transition: 0.7s;
+}
+
+.ellipse__204px_changed {
+    position: absolute;
+    top: 43px;
+    left: -8px;
+    transition: 0.7s;
 }
 
 .ellipse__255px {
     position: absolute;
     top: 173px;
     left: 285px;
+    transition: 0.7s;
+}
+
+.ellipse__255px_changed {
+    position: absolute;
+    top: 89px;
+    left: 281px;
+    transition: 0.7s;
 }
 
 .ellipse__262fade{
@@ -80,5 +168,16 @@
     border-radius: 262px;
     top: 49px;
     left: 49px;
+    transition: 0.7s;
 }
 
+.ellipse__262fade_changed{
+    position: absolute;
+    background: rgba(199, 168, 252, 0.36);
+    width: 262px;
+    height: 248px;
+    border-radius: 262px;
+    top: 17px;
+    left: -37px;
+    transition: 0.7s;
+}
